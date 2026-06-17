@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Face Verification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background overlay and dynamic glassmorphism orbs -->
+    <div class="bg-overlay"></div>
+    <div class="glowing-orb orb-1"></div>
+    <div class="glowing-orb orb-2"></div>
+    <div class="glowing-orb orb-3"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-logo">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 3H5C3.89543 3 3 3.89543 3 5V9" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M15 3H19C20.1046 3 21 3.89543 21 5V9" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M9 21H5C3.89543 21 3 20.1046 3 19V15" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M15 21H19C20.1046 21 21 20.1046 21 19V15" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 7V17" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 12H16" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="12" cy="12" r="3" stroke="url(#logoGrad)" stroke-width="2"/>
+                    <defs>
+                        <linearGradient id="logoGrad" x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#06b6d4"/>
+                            <stop offset="1" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1>Face Verification AI</h1>
+            <p>Upload two faces and let AI determine whether they belong to the same person.</p>
+        </div>
+
+        <div class="upload-section">
+            <!-- Image Card 1 -->
+            <div class="image-card" id="card1">
+                <h3>Face Image 1</h3>
+                <label class="upload-box" id="uploadBox1">
+                    <!-- HUD Corners for cyberpunk/security aesthetic -->
+                    <div class="hud-corner top-left"></div>
+                    <div class="hud-corner top-right"></div>
+                    <div class="hud-corner bottom-left"></div>
+                    <div class="hud-corner bottom-right"></div>
+                    
+                    <!-- Laser scanning line -->
+                    <div class="scan-line"></div>
+                    
+                    <div class="upload-placeholder" id="placeholder1">
+                        <svg class="upload-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 16V8M12 8L9 11M12 8L15 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20 16.5834C18.9605 18.0025 17.2917 19 15.4 19H9C5.68629 19 3 16.3137 3 13C3 10.165 4.96979 7.79093 7.6322 7.1499C8.30737 4.79373 10.4907 3 13.0833 3C16.6338 3 19.5668 5.70425 19.9575 9.17644C21.1683 10.2642 22 11.8906 22 13.7C22 14.8622 21.218 15.8649 20 16.5834Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span id="text1">Click to upload image</span>
+                    </div>
+
+                    <img id="preview1" src="" alt="Preview 1">
+                    <input type="file" id="image1" accept="image/*" onchange="previewImage(event,1)">
+                </label>
+            </div>
+
+            <!-- VS Divider -->
+            <div class="divider">
+                <div class="vs-circle">
+                    <div class="vs-pulse"></div>
+                    <span>VS</span>
+                </div>
+            </div>
+
+            <!-- Image Card 2 -->
+            <div class="image-card" id="card2">
+                <h3>Face Image 2</h3>
+                <label class="upload-box" id="uploadBox2">
+                    <!-- HUD Corners -->
+                    <div class="hud-corner top-left"></div>
+                    <div class="hud-corner top-right"></div>
+                    <div class="hud-corner bottom-left"></div>
+                    <div class="hud-corner bottom-right"></div>
+                    
+                    <!-- Laser scanning line -->
+                    <div class="scan-line"></div>
+                    
+                    <div class="upload-placeholder" id="placeholder2">
+                        <svg class="upload-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 16V8M12 8L9 11M12 8L15 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20 16.5834C18.9605 18.0025 17.2917 19 15.4 19H9C5.68629 19 3 16.3137 3 13C3 10.165 4.96979 7.79093 7.6322 7.1499C8.30737 4.79373 10.4907 3 13.0833 3C16.6338 3 19.5668 5.70425 19.9575 9.17644C21.1683 10.2642 22 11.8906 22 13.7C22 14.8622 21.218 15.8649 20 16.5834Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span id="text2">Click to upload image</span>
+                    </div>
+
+                    <img id="preview2" src="" alt="Preview 2">
+                    <input type="file" id="image2" accept="image/*" onchange="previewImage(event,2)">
+                </label>
+            </div>
+        </div>
+
+        <button onclick="predict()" id="compareBtn">
+            <span class="btn-text">🔍 Compare Faces</span>
+            <div class="btn-glow"></div>
+        </button>
+
+        <div class="result-box" id="resultBox">
+            <h2 id="result">Waiting for images...</h2>
+            <h3 id="confidence" style="display:none;"></h3>
+            
+            <div class="confidence-meter" id="confidenceMeter">
+                <div class="confidence-labels">
+                    <span>Match Probability</span>
+                    <span id="confidencePercent">0%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
