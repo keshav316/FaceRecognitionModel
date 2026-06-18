@@ -1,48 +1,43 @@
-function previewImage(event,id){
+function previewImage(event, id) {
 
 
-let file = event.target.files[0];
+    let file = event.target.files[0];
 
 
-if(file){
+    if (file) {
 
 
-let reader = new FileReader();
+        let reader = new FileReader();
 
 
-reader.onload=function(){
+        reader.onload = function () {
 
 
-let img =
-document.getElementById(
-"preview"+id
-);
+            let img = document.getElementById(
+                "preview" + id
+            );
 
 
-
-img.src=reader.result;
-
-
-img.style.display="block";
+            img.src = reader.result;
 
 
-
-document.getElementById(
-"text"+id
-).style.display="none";
+            img.style.display = "block";
 
 
 
-}
+            document.getElementById(
+                "text" + id
+            ).style.display = "none";
+
+
+        }
 
 
 
-reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
 
 
-
-}
-
+    }
 
 }
 
@@ -52,123 +47,173 @@ reader.readAsDataURL(file);
 
 
 
-async function predict(){
 
+async function predict() {
 
 
-let image1 =
-document.getElementById(
-"image1"
-).files[0];
+    let image1 =
+        document.getElementById(
+            "image1"
+        ).files[0];
 
 
 
-let image2 =
-document.getElementById(
-"image2"
-).files[0];
+    let image2 =
+        document.getElementById(
+            "image2"
+        ).files[0];
 
 
 
 
 
-if(!image1 || !image2){
+    if (!image1 || !image2) {
 
 
-alert(
-"Please upload both images"
-);
+        alert(
+            "Please upload both images"
+        );
 
 
-return;
+        return;
 
+    }
 
-}
 
 
 
 
 
-let formData =
-new FormData();
+    let formData = new FormData();
 
 
 
+    formData.append(
+        "image1",
+        image1
+    );
 
-formData.append(
-"image1",
-image1
-);
 
 
+    formData.append(
+        "image2",
+        image2
+    );
 
-formData.append(
-"image2",
-image2
-);
 
 
 
 
+    document.getElementById(
+        "result"
+    ).innerHTML =
+        "⏳ AI is analyzing faces...";
 
 
-document.getElementById(
-"result"
-).innerHTML=
-"⏳ AI is analyzing faces...";
 
+    document.getElementById(
+        "confidence"
+    ).innerHTML = "";
 
 
 
 
 
-let response =
-await fetch(
 
-"http://127.0.0.1:8000/predict",
+    try {
 
-{
 
-method:"POST",
+        let response = await fetch(
 
-body:formData
 
-}
+            "https://face-recognition-api-orza.onrender.com/predict",
 
-);
 
+            {
 
 
+                method: "POST",
 
 
+                body: formData
 
-let data =
-await response.json();
 
+            }
 
 
+        );
 
 
-document.getElementById(
-"result"
-).innerHTML=
 
 
-data.prediction;
 
+        if (!response.ok) {
 
 
-document.getElementById(
-"confidence"
-).innerHTML=
+            throw new Error(
+                "API request failed"
+            );
 
 
-"Confidence : "
-+
-data.confidence
-+
-"%";
+        }
 
+
+
+
+
+
+        let data = await response.json();
+
+
+
+
+
+        document.getElementById(
+            "result"
+        ).innerHTML =
+
+
+            "Prediction : " +
+            data.prediction;
+
+
+
+
+
+
+        document.getElementById(
+            "confidence"
+        ).innerHTML =
+
+
+            "Confidence : " +
+            data.confidence +
+            "%";
+
+
+
+
+    }
+
+    catch(error){
+
+
+        console.log(error);
+
+
+        document.getElementById(
+            "result"
+        ).innerHTML =
+
+
+            "❌ Server error. Please try again.";
+
+
+        document.getElementById(
+            "confidence"
+        ).innerHTML = "";
+
+    }
 
 
 

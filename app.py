@@ -11,7 +11,9 @@ import io
 import zipfile
 import os
 
+import os
 
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 # =========================
 # Extract Model ZIP
