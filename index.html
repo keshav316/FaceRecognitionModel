@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+AI Face Verification
+</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="background"></div>
+
+
+
+<div class="container">
+
+
+<div class="header">
+
+<h1>
+🤖 Face Verification AI
+</h1>
+
+
+<p>
+Upload two faces and let AI determine whether they belong to the same person.
+</p>
+
+
+</div>
+
+
+
+
+<div class="upload-section">
+
+
+
+<div class="image-card">
+
+
+<h3>
+Face Image 1
+</h3>
+
+
+
+<label class="upload-box">
+
+
+<img id="preview1" src="" alt="">
+
+
+<span id="text1">
+Click to upload image
+</span>
+
+
+
+<input 
+
+type="file"
+
+id="image1"
+
+accept="image/*"
+
+onchange="previewImage(event,1)"
+
+>
+
+
+</label>
+
+
+</div>
+
+
+
+
+
+<div class="divider">
+
+VS
+
+</div>
+
+
+
+
+
+<div class="image-card">
+
+
+<h3>
+Face Image 2
+</h3>
+
+
+
+<label class="upload-box">
+
+
+<img id="preview2" src="" alt="">
+
+
+<span id="text2">
+Click to upload image
+</span>
+
+
+
+<input 
+
+type="file"
+
+id="image2"
+
+accept="image/*"
+
+onchange="previewImage(event,2)"
+
+>
+
+
+</label>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+<button onclick="predict()">
+
+
+<span>
+🔍 Compare Faces
+</span>
+
+
+</button>
+
+
+
+
+
+<div class="result-box">
+
+
+<h2 id="result">
+
+Waiting for images...
+
+</h2>
+
+
+
+<h3 id="confidence">
+
+</h3>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+<script src="script.js"></script>
+
+
+
+</body>
+
+
+</html>

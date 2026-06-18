@@ -1,0 +1,51 @@
+# ==========================
+# FastAPI Backend
+# Python Version: 3.11
+# ==========================
+
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+
+
+# ==========================
+# Deep Learning
+# CUDA 12.6 Compatible
+# ==========================
+
+torch==2.5.1
+torchvision==0.20.1
+
+
+# PyTorch CUDA Wheel Source:
+# https://download.pytorch.org/whl/cu126
+
+
+# ==========================
+# Image Processing
+# ==========================
+
+pillow==11.1.0
+
+
+# ==========================
+# Numerical Libraries
+# ==========================
+
+numpy==1.26.4
+
+
+# ==========================
+# Optional ML Utilities
+# ==========================
+
+scikit-learn==1.6.1
+joblib==1.4.2
+
+
+# ==========================
+# Utilities
+# ==========================
+
+pydantic==2.10.5
+typing_extensions==4.12.2
